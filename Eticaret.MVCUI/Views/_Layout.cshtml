@@ -6,13 +6,16 @@
     <title>@ViewBag.Title</title>
     <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
 
 </head>
 <body>
     <div class="col-md-12">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Ali Can Yücel Eticaret Projesi</a>
+            <img  src="https://avatars.githubusercontent.com/u/32604562?v=4" width="120" height="120" />
+            <br />
+             &nbsp; <a class="navbar-brand" href="#">Ali Can Yücel Eticaret Projesi</a>
+            
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -33,6 +36,6 @@
     <div class="col-md-10">
         @RenderBody()
     </div>
-    <div class="col-md-12">Footer</div>
+    <div class="col-md-12"><marquee> &copy; Ali Can Yücel.Her Hakkı Saklıdır.</marquee></div>
 </body>
 </html>
