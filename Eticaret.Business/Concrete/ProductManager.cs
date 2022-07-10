@@ -24,7 +24,7 @@ namespace Eticaret.Business.Concrete
 
         public void Delete(int productid)
         {
-            _productdal.Delete(productid);
+            _productdal.Delete(new Product { ProductId=productid});
         }
 
         public List<Product> GetAll()

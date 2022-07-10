@@ -1,3 +1,7 @@
+using Eticaret.Business.Abstract;
+using Eticaret.Business.Concrete;
+using Eticaret.DataAccess.Abstract;
+using Eticaret.DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,6 +27,12 @@ namespace Eticaret.MVCUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //servisler scoped,singleton,transient olarak tanýmlanýr
+            // singleton bir kere instance oluþur herkes ayný instance kullanýr
+            //scoped ise nesne ornekleri yapoýlan her istekte yeniden oluþur
+            // transient se ayný anda 2 istek ihtiyacý duyarsa 2 tane ayrý pier oluþturulur
+            services.AddScoped<IProductService, ProductManager>();
+            services.AddScoped<IProductDal, EfProductDal>();
             services.AddControllersWithViews(options => options.EnableEndpointRouting = false);
             services.AddMvc();
             services.AddRazorPages();
@@ -41,9 +51,12 @@ namespace Eticaret.MVCUI
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            
             app.UseHttpsRedirection();
+            app.UseFileServer();
             app.UseStaticFiles();
+            
+          
             app.UseMvcWithDefaultRoute();
             app.UseRouting();
 

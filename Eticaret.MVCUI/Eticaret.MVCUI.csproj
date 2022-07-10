@@ -15,7 +15,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <ProjectReference Include="..\Eticaret.Business\Eticaret.Business.csproj" />
+    <ProjectReference Include="..\Eticaret.Core\Eticaret.Core.csproj" />
+    <ProjectReference Include="..\Eticaret.DataAccess\Eticaret.DataAccess.csproj" />
+    <ProjectReference Include="..\Eticaret.Entities\Eticaret.Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Middlewares\" />
   </ItemGroup>
 
 </Project>

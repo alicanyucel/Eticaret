@@ -1,0 +1,27 @@
+﻿@model Eticaret.MVCUI.Models.ProductlistViewModel
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+<html>
+<head>
+</head>
+<body>
+    <div>
+        <table class="table table-responsive">
+            <tr>
+                <td>Urun Adı</td>
+                <td>Urun Fiyat</td>
+                <td>Stok Adedi</td>
+            </tr>
+            @foreach (var item in Model.Products)
+           {
+               <tr>
+                   <td>@item.ProductName</td>
+                   <td>@item.UnitPrice</td>
+                   <td>@item.UnitsInStock</td>
+               </tr>
+           }
+        </table>
+    </div>
+</body>
+</html>

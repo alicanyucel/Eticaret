@@ -10,7 +10,7 @@ namespace Eticaret.DataAccess.Abstract
 {
     public interface IProductDal : IEntityRepository<Product>
     {
-        void Delete(int productid);
+       
     }
 
 }

@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace Eticaret.DataAccess.Concrete.EntityFramework
 {
-    public class EfProductDal:EfEntityRepositoryBase<Product,NortWindContext>,IProductDal
+    public class EfProductDal : EfEntityRepositoryBase<Product, NortWindContext>, IProductDal
     {
-
+       
     }
 }
