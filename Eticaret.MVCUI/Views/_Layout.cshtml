@@ -1,41 +1,44 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+   <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-
 </head>
 <body>
     <div class="col-md-12">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <img  src="https://avatars.githubusercontent.com/u/32604562?v=4" width="120" height="120" />
-            <br />
-             &nbsp; <a class="navbar-brand" href="#">Ali Can Yücel Eticaret Projesi</a>
-            
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Northwind</a>
+                </div>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                </ul>
-            </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a asp-controller="Account" asp-action="Login" >Admin<span class="sr-only">(current)</span></a></li>
+                    </ul>
+                   
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
         </nav>
     </div>
-    <div class="col-md-2">@await Component.InvokeAsync("CategoryList")</div>
-    <div class="col-md-10">
-        @RenderBody()
+    <div class="col-md-2">
+        @await Component.InvokeAsync("CategoryList")
     </div>
-    <div class="col-md-12"><marquee> &copy; Ali Can Yücel.Her Hakkı Saklıdır.</marquee></div>
+<div class="col-md-10">
+   
+   @RenderBody()
+</div>
+    <div class="col-md-12">Footer</div>
 </body>
 </html>
