@@ -32,7 +32,7 @@
             </div>
         </nav>
     </div>
-    <div class="col-md-2">Categories</div>
+    <div class="col-md-2">@await Component.InvokeAsync("CategoryList")</div>
     <div class="col-md-10">
         @RenderBody()
     </div>

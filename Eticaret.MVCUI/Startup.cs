@@ -33,6 +33,8 @@ namespace Eticaret.MVCUI
             // transient se ayný anda 2 istek ihtiyacý duyarsa 2 tane ayrý pier oluþturulur
             services.AddScoped<IProductService, ProductManager>();
             services.AddScoped<IProductDal, EfProductDal>();
+            services.AddScoped<ICategoryService, CategoryManager>();
+            services.AddScoped<ICategoryDal, EfCategoryDal>();
             services.AddControllersWithViews(options => options.EnableEndpointRouting = false);
             services.AddMvc();
             services.AddRazorPages();
@@ -55,11 +57,9 @@ namespace Eticaret.MVCUI
             app.UseHttpsRedirection();
             app.UseFileServer();
             app.UseStaticFiles();
-            
-          
+            app.UseMvc();         
             app.UseMvcWithDefaultRoute();
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
