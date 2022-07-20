@@ -34,7 +34,7 @@ namespace Eticaret.Business.Concrete
 
         public List<Product> GetByCategory(int categoryid)
         {
-            return _productdal.GetList(p => p.CategoryId == categoryid);
+            return _productdal.GetList(p => p.CategoryId == categoryid || categoryid==0);
         }
 
         public void Update(Product product)

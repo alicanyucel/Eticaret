@@ -1,6 +1,7 @@
 ﻿using Eticaret.Business.Abstract;
 using Eticaret.MVCUI.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Eticaret.MVCUI.Controllers
 {
@@ -11,12 +12,15 @@ namespace Eticaret.MVCUI.Controllers
         {
             _productService = productService;
         }
-        public IActionResult Index()
+        public ActionResult Index(int page=1,int category=0)
         {
-           var products= _productService.GetAll();
+            int pageSize = 10;//her sayfada 10 tane ürün olacak
+            var products = _productService.GetByCategory(category);
             ProductlistViewModel model = new ProductlistViewModel
             {
-                Products = products
+                //mwvcut gelen sayfa numarası kaçsa ilk sayfayı atla sayfalama yap
+                Products = products.Skip((page - 1) * pageSize).Take(pageSize).ToList()
+
             };
             return View(model);
         }
