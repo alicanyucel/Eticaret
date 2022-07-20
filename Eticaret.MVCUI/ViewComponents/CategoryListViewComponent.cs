@@ -24,7 +24,8 @@ namespace Eticaret.MVCUI.ViewComponents
         {
             var model = new CategoryListViewModel
             {
-                Categories = _categoryService.Getall()
+                Categories = _categoryService.Getall(),
+                CurrentCategory = Convert.ToInt32(HttpContext.Request.Query["category"])
             };
             return View(model);
         }

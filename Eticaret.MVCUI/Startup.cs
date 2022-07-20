@@ -36,7 +36,7 @@ namespace Eticaret.MVCUI
             services.AddScoped<IProductDal, EfProductDal>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryDal, EfCategoryDal>();
-            services.AddControllersWithViews(options => options.EnableEndpointRouting = false);
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddMvc();
     
             services.AddRazorPages();

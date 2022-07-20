@@ -1,13 +1,16 @@
 ﻿@model Eticaret.MVCUI.Models.ProductlistViewModel
+
 @{
     Layout = "~/Views/_Layout.cshtml";
 }
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css"/>
+ 
 </head>
 <body>
     <div>
-        <table class="table table-responsive">
+        <table class="table table-responsive" id="dataTables">
             <tr>
                 <td>Urun Adı</td>
                 <td>Urun Fiyat</td>
@@ -23,5 +26,12 @@
            }
         </table>
     </div>
+    <product-list-pager
+    current-category="@Model.CurrentCategory"
+    current-page="@Model.CurrentPage"
+    page-count="@Model.PageCount"
+    page-size="@Model.PageSize">
+    </product-list-pager>
+     
 </body>
 </html>
