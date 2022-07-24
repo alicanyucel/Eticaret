@@ -37,6 +37,8 @@ namespace Eticaret.MVCUI
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryDal, EfCategoryDal>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddSingleton<ICartService, CartService>();
+           // services.AddSingleton<ICartSessionService, CartSessionService>();
             services.AddMvc();
             //// SESSÝON için alttaki 2 middleware yapýlandýrýlýr
             services.AddSession();
