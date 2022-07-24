@@ -38,7 +38,9 @@ namespace Eticaret.MVCUI
             services.AddScoped<ICategoryDal, EfCategoryDal>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddMvc();
-    
+            //// SESSÝON için alttaki 2 middleware yapýlandýrýlýr
+            services.AddSession();
+            services.AddDistributedMemoryCache(); //sessiion için
             services.AddRazorPages();
         }
 
@@ -58,7 +60,7 @@ namespace Eticaret.MVCUI
             app.UseHttpsRedirection();
             app.UseFileServer();
             app.UseStaticFiles();
-            
+            app.UseSession();
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>

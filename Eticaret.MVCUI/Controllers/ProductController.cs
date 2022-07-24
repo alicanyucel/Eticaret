@@ -27,15 +27,16 @@ namespace Eticaret.MVCUI.Controllers
             };
             return View(model);
         }
+        // sesionlarda object tutamazssınız desarlize ve serialize etmek lazmm
+        /*public string Session()
+        {
+            HttpContext.Session.SetString("city","Ankara");
+            HttpContext.Session.SetInt32("age",32);
 
-        //public string Session()
-        //{
-        //    HttpContext.Session.SetString("city","Ankara");
-        //    HttpContext.Session.SetInt32("age",32);
+            HttpContext.Session.GetString("city");
+            HttpContext.Session.GetInt32("age");
+        } */
 
-        //    HttpContext.Session.GetString("city");
-        //    HttpContext.Session.GetInt32("age");
-        //}
 
     }
 }
