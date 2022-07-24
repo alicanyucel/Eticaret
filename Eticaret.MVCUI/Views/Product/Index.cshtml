@@ -17,6 +17,7 @@
                 <td>Urun Fiyat</td>
                 <td>Stok Adedi</td>
                 <td></td>
+               
             </tr>
             @foreach (var product in Model.Products)
            {
@@ -25,6 +26,7 @@
                    <td>@product.UnitPrice</td>
                    <td>@product.UnitsInStock</td>
                    <td><a class="btn btn-xs btn-success" asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@product.ProductId">ekle</a></td>
+                   
                </tr>
            }
         </table>

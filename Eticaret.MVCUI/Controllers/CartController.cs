@@ -1,6 +1,9 @@
 ﻿using Eticaret.Business.Abstract;
+using Eticaret.Entities.Concrete;
+using Eticaret.MVCUI.Models;
 using Eticaret.MVCUI.Services;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Eticaret.MVCUI.Controllers
 {
@@ -9,6 +12,8 @@ namespace Eticaret.MVCUI.Controllers
         private ICartSessionServices _cartSessionService;
         private ICartService _cartServices;
         private IProductService _productServices;
+        private int productid;
+
         public CartController(ICartService cartService, IProductService productService, ICartSessionServices cartSessionServices)
         {
             _cartServices = cartService;
@@ -19,13 +24,31 @@ namespace Eticaret.MVCUI.Controllers
         {
             var producttobeadded = _productServices.GetById(productid);
             var cart = _cartSessionService.GetCart();
-            _cartServices.AddToCart(cart,producttobeadded);
+            _cartServices.AddToCart(cart, producttobeadded);
             _cartSessionService.SetCart(cart);
-            TempData.Add("message",string.Format("urun ,{0},",producttobeadded.ProductName));
-          return   RedirectToAction("Index","Product");
+            TempData.Add("message", string.Format("urun ,{0},", producttobeadded.ProductName));
+            return RedirectToAction("Index", "Product");
 
-    
-            
+
+
+        }
+        public IActionResult List()
+        {
+            var cart= _cartSessionService.GetCart();
+            CartListViewModel cartListViewModel = new CartListViewModel
+            {
+                Cart = cart
+            };
+            return View(cartListViewModel);
+
+        }
+        public IActionResult Remove(int productId)
+        {
+            var cart = _cartSessionService.GetCart();
+            _cartServices.RemoveFromCart(cart,productId);
+            _cartSessionService.SetCart(cart);
+            TempData.Add("message", String.Format("silindi"));
+            return RedirectToAction("List");
         }
     }
 }

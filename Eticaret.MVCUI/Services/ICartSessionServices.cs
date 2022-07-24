@@ -6,5 +6,6 @@ namespace Eticaret.MVCUI.Services
     {
         Cart GetCart();
         void SetCart(Cart cart);
+
     }
 }
