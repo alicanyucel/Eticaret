@@ -36,7 +36,7 @@ namespace Eticaret.MVCUI.Controllers
             HttpContext.Session.GetString("city");
             HttpContext.Session.GetInt32("age");
         } */
-
+       
 
     }
 }

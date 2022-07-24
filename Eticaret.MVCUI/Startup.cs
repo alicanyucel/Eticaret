@@ -2,8 +2,10 @@ using Eticaret.Business.Abstract;
 using Eticaret.Business.Concrete;
 using Eticaret.DataAccess.Abstract;
 using Eticaret.DataAccess.Concrete.EntityFramework;
+using Eticaret.MVCUI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -38,7 +40,9 @@ namespace Eticaret.MVCUI
             services.AddScoped<ICategoryDal, EfCategoryDal>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddSingleton<ICartService, CartService>();
-           // services.AddSingleton<ICartSessionService, CartSessionService>();
+            services.AddSingleton<ICartSessionServices, CartSesionService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+           
             services.AddMvc();
             //// SESSÝON için alttaki 2 middleware yapýlandýrýlýr
             services.AddSession();

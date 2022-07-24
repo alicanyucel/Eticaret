@@ -14,5 +14,6 @@ namespace Eticaret.Business.Abstract
         void Add(Product product);
         void Delete(int productid);
         void Update(Product product);
+        Product GetById(int productid);
     }
 }
