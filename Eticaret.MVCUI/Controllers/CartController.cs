@@ -50,5 +50,24 @@ namespace Eticaret.MVCUI.Controllers
             TempData.Add("message", String.Format("silindi"));
             return RedirectToAction("List","Cart");
         }
+      
+        public ActionResult Complete()
+        {
+            var ShippingDetailsViewModel = new ShippingDetailsViewModel
+            {
+                ShippingDetails = new ShippingDetails()
+            };
+            return View(ShippingDetailsViewModel);
+        }
+        [HttpPost]
+        public ActionResult Complete(ShippingDetails shippingdetails)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View();
+            }
+            TempData.Add("message",String.Format( "thank {0}, you order is in process", shippingdetails.FirstName));
+            return View();
+        }
     }
 }
