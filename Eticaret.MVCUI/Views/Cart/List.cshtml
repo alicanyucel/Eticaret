@@ -20,7 +20,7 @@
             <td>@item.Product.UnitPrice</td>
             <td>@item.Product.UnitsInStock</td>
             <td>@item.Quantity</td>
-            <td class="text-right"><a class="btn btn-xs btn-danger" asp-controller="Cart" asp-action="List" asp-route-productId="@item.Product.ProductId"><span class="glyphicon glyphicon-remove"></span>Sil</a></td>
+            <td class="text-right"><a class="btn btn-xs btn-danger" asp-controller="Cart" asp-action="Remove" asp-route-productId="@item.Product.ProductId"><span class="glyphicon glyphicon-remove"></span>Urunu Silin</a></td>
         </tr>
     }
     <tr>
@@ -42,12 +42,12 @@
         <td> </td>
         <td>
             <a asp-controller="Product" asp-action="Index" class="btn btn-xs btn-default">
-                <span class="glyphicon glyphicon-shopping-cart"></span> Alış Verişe Devam Et
+                <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
             </a>
         </td>
         <td class="text-right">
             <a asp-controller="Cart" asp-action="Complete" class="btn btn-xs btn-success">
-                <span class="glyphicon glyphicon-shopping-play">Sepeti Onayla</span> 
+                <span class="glyphicon glyphicon-shopping-play"></span> Go To Checkout
             </a>
         </td>
     </tr>

@@ -42,13 +42,13 @@ namespace Eticaret.MVCUI.Controllers
             return View(cartListViewModel);
 
         }
-        public IActionResult Remove(int productId)
+        public IActionResult Remove(int ProductId)
         {
             var cart = _cartSessionService.GetCart();
-            _cartServices.RemoveFromCart(cart,productId);
+            _cartServices.RemoveFromCart(cart, ProductId);
             _cartSessionService.SetCart(cart);
             TempData.Add("message", String.Format("silindi"));
-            return RedirectToAction("List");
+            return RedirectToAction("List","Cart");
         }
     }
 }
