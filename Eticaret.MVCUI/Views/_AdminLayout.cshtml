@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+    <style>
+            table{
+                min-height:540px;
+            }
+
+           ul.pagination li{
+               background:gray;
+               margin-right:20px;
+               padding:8px;
+           }
+
+             ul.pagination li a{
+                 color:white;
+             }
+                ul.pagination li.active{
+               padding:8px;
+               background:blue;
+           }
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+    <div class="col-md-12">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Ali Can Yücel Admin Panel</a>
+                    <a href="~/cart/list">Sepete Git</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                       <li class="active"> <a href="#">Products <span class="sr-only">(current)</span></a></li>
+                        
+                     
+                    </ul>
+                    
+                  
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">
+
+                            </a>
+                          
+                               
+                        </li>
+                    </ul>
+                   
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div>
+    
+   
+  
+<div class="col-md-12">
+   @if(TempData["message"]!=null)
+                {
+                    <div clas="alert alert-info" role="alert">@TempData["message"]</div>
+                }
+                @RenderBody()
+</div>
+  </div>
+    </div>
+    <div class="col-md-12"><marquee>&copy; Ali Can Yücel-Bilgisayar Mühendisi-Selçuk Üniversitesi </marquee></div>
+</body>
+</html>
