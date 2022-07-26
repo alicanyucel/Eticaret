@@ -5,36 +5,69 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Eticaret.MVCUI.Controllers
 {
+
     public class AdminController : Controller
     {
-      
-         private IProductService _productservice;
-        public AdminController(IProductService productService)
+        private IProductService _productService;
+        private ICategoryService _categoryService;
+
+        public AdminController(IProductService productService, ICategoryService categoryService)
         {
-            _productservice = productService;
+            _productService = productService;
+            _categoryService = categoryService;
         }
-        public IActionResult Index()
+
+        public ActionResult Index()
         {
-            var productListViewModel = new ProductlistViewModel()
+            var productListViewModel = new ProductlistViewModel
             {
-                Products = _productservice.GetAll()
+                Products = _productService.GetAll()
             };
             return View(productListViewModel);
         }
-        public IActionResult Add()
+
+        public ActionResult Add()
         {
-            return View();
+            var model = new ProductAddViewModel
+            {
+                Product = new Product(),
+                Categories = _categoryService.Getall()
+            };
+            return View(model);
         }
+
         [HttpPost]
         public ActionResult Add(Product product)
         {
-            if(!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                _productservice.Add(product);
-                TempData.Add("message", "eklendi");
+                _productService.Add(product);
+                TempData.Add("message", "Product was successfully added");
             }
-           
-            return View();
+
+            return RedirectToAction("Add");
         }
+
+
+
+        [HttpPost]
+        public ActionResult Update(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                _productService.Update(product);
+                TempData.Add("message", "Product was successfully updated");
+            }
+
+            return RedirectToAction("Update");
+        }
+
+        public ActionResult Delete(int productId)
+        {
+            _productService.Delete(productId);
+            TempData.Add("message", "Product was successfully deleted");
+            return RedirectToAction("Index");
+        }
+
     }
 }
