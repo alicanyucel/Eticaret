@@ -1,11 +1,13 @@
 ﻿using Eticaret.Business.Abstract;
 using Eticaret.Entities.Concrete;
 using Eticaret.MVCUI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Eticaret.MVCUI.Controllers
 {
-
+  
     public class AdminController : Controller
     {
         private IProductService _productService;
@@ -48,7 +50,17 @@ namespace Eticaret.MVCUI.Controllers
             return RedirectToAction("Add");
         }
 
+        public ActionResult Update(int productId)
+        {
+            var model = new ProductUpdateViewModel
+            {
+                Product = _productService.GetById(productId),
+                Categories = _categoryService.Getall()
+            };
 
+            return View(model);
+
+        }
 
         [HttpPost]
         public ActionResult Update(Product product)
