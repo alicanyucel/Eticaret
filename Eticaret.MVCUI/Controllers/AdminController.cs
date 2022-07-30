@@ -7,7 +7,7 @@ using System;
 
 namespace Eticaret.MVCUI.Controllers
 {
-    // [Authorize(Roles ="Admin")]
+  //   [Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
         private IProductService _productService;

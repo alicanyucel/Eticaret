@@ -84,9 +84,10 @@ namespace Abc.Northwind.MvcWebUI.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Admin");
-                }
+                    
 
+                }
+                return RedirectToAction("Index", "Admin");
                 ModelState.AddModelError("", "Invalid login!");
             }
 
