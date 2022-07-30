@@ -2,14 +2,19 @@ using Eticaret.Business.Abstract;
 using Eticaret.Business.Concrete;
 using Eticaret.DataAccess.Abstract;
 using Eticaret.DataAccess.Concrete.EntityFramework;
+using Eticaret.MVCUI.Entities;
 using Eticaret.MVCUI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
@@ -42,7 +47,9 @@ namespace Eticaret.MVCUI
             services.AddSingleton<ICartService, CartService>();
             services.AddSingleton<ICartSessionServices, CartSesionService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-           
+            services.AddDbContext<CustomIdentityDbContext>(options => options.UseSqlServer("Data Source = DESKTOP-ROTCU0Q; Initial Catalog = Northwind; Integrated Security = True"));
+            services.AddIdentity<CustomIdentityUser, CustomIdentityRole>().AddEntityFrameworkStores<CustomIdentityDbContext>()
+                .AddDefaultTokenProviders();
             services.AddMvc();
             //// SESSÝON için alttaki 2 middleware yapýlandýrýlýr
             services.AddSession();
@@ -51,7 +58,7 @@ namespace Eticaret.MVCUI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApplicationBuilder applicationBuilder)
         {
             if (env.IsDevelopment())
             {
@@ -64,10 +71,11 @@ namespace Eticaret.MVCUI
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            app.UseFileServer();
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseSession();
             app.UseRouting();
+           
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
