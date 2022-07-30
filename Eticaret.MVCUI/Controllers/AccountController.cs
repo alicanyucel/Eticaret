@@ -1,21 +1,27 @@
-﻿using Eticaret.MVCUI.Entities;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Identity;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Eticaret.MVCUI.Entities;
 using Eticaret.MVCUI.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
-namespace Eticaret.MVCUI.Controllers
+namespace Abc.Northwind.MvcWebUI.Controllers
 {
     public class AccountController : Controller
     {
-        private UserManager<CustomIdentityUser> _usermanager;
-        private RoleManager<CustomIdentityRole> _rolemanager;
-     private   SignInManager<CustomIdentityUser> _signInManager;
-        public AccountController(UserManager<CustomIdentityUser> usermanager, RoleManager<CustomIdentityRole> rolemanager, SignInManager<CustomIdentityUser> signInManager)
+        private UserManager<CustomIdentityUser> _userManager;
+        private RoleManager<CustomIdentityRole> _roleManager;
+        private SignInManager<CustomIdentityUser> _signInManager;
+
+        public AccountController(UserManager<CustomIdentityUser> userManager, RoleManager<CustomIdentityRole> roleManager, SignInManager<CustomIdentityUser> signInManager)
         {
-            _usermanager = usermanager;
-            _rolemanager = rolemanager;
+            _userManager = userManager;
+            _roleManager = roleManager;
             _signInManager = signInManager;
         }
+
         public ActionResult Register()
         {
             return View();
@@ -34,18 +40,18 @@ namespace Eticaret.MVCUI.Controllers
                 };
 
                 IdentityResult result =
-                    _usermanager.CreateAsync(user, registerViewModel.Password).Result;
+                    _userManager.CreateAsync(user, registerViewModel.Password).Result;
 
                 if (result.Succeeded)
                 {
-                    if (!_rolemanager.RoleExistsAsync("Admin").Result)
+                    if (!_roleManager.RoleExistsAsync("Admin").Result)
                     {
                         CustomIdentityRole role = new CustomIdentityRole
                         {
                             Name = "Admin"
                         };
 
-                        IdentityResult roleResult = _rolemanager.CreateAsync(role).Result;
+                        IdentityResult roleResult = _roleManager.CreateAsync(role).Result;
 
                         if (!roleResult.Succeeded)
                         {
@@ -54,7 +60,7 @@ namespace Eticaret.MVCUI.Controllers
                         }
                     }
 
-                    _usermanager.AddToRoleAsync(user, "Admin").Wait();
+                    _userManager.AddToRoleAsync(user, "Admin").Wait();
                     return RedirectToAction("Login", "Account");
                 }
             }
@@ -96,4 +102,3 @@ namespace Eticaret.MVCUI.Controllers
         }
     }
 }
-    
