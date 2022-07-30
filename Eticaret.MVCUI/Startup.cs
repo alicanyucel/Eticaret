@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
@@ -51,6 +50,8 @@ namespace Eticaret.MVCUI
             services.AddIdentity<CustomIdentityUser, CustomIdentityRole>().AddEntityFrameworkStores<CustomIdentityDbContext>()
                 .AddDefaultTokenProviders();
             services.AddMvc();
+            services.AddAuthorization();
+            services.AddAuthentication();
             //// SESSÝON için alttaki 2 middleware yapýlandýrýlýr
             services.AddSession();
             services.AddDistributedMemoryCache(); //sessiion için
@@ -72,10 +73,13 @@ namespace Eticaret.MVCUI
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseAuthentication();
             app.UseSession();
+            app.UseAuthorization();
+            app.UseAuthentication();// yetkilendirme
+          //
+          
             app.UseRouting();
-           
+          
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
